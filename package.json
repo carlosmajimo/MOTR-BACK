@@ -2,16 +2,35 @@
   "name": "motr-back",
   "version": "1.0.0",
   "description": "Proyecto para el seguimiento de rutas de transporte publico",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/carlosmjimenez/MOTR"
+  },
   "author": "Carlos Jimenez",
   "license": "MIT",
   "scripts": {
+    "start": "npm run serve",
+    "build": "npm run build-ts && npm run tslint",
+    "serve": "node dist/server.js",
+    "build-ts": "tsc",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "errorhandler": "^1.5.0",
+    "express": "^4.16.3",
+    "express-flash": "0.0.2",
+    "express-validator": "^4.3.0",
+    "lusca": "^1.5.2"
   },
   "devDependencies": {
+    "@types/compression": "^0.0.35",
+    "@types/errorhandler": "^0.0.32",
     "@types/express": "^4.11.1",
+    "@types/lusca": "^1.5.0",
+    "@types/node": "^9.4.6",
     "nodemon": "^1.13.0",
     "ts-node": "^5.0.0",
     "tslint": "^5.9.1",
