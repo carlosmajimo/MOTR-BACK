@@ -13,6 +13,9 @@ logs
 results
 tmp
 
+# Editors
+.idea
+
 # API keys and secrets
 .env
 
