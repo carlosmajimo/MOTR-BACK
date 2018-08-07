@@ -9,9 +9,11 @@
   "author": "Carlos Jimenez",
   "license": "MIT",
   "scripts": {
-    "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint",
-    "serve": "node dist/server.js",
+    "start-api": "npm run serve-api",
+    "start-tcp": "npm run serve-tcp",
+    "serve-api": "node dist/api/server.js",
+    "serve-tcp": "node dist/tcp-ip/server.js",
     "build-ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
