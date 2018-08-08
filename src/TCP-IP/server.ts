@@ -1,7 +1,9 @@
 import tcpApp from "./app";
 
-const server = tcpApp.listen(8124, () => {
-    console.log("server bound");
+const port = 8124;
+
+const server = tcpApp.listen(port, () => {
+    console.log("App is running at http://localhost:%d", port);
 });
 
 export default server;

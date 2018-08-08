@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run build-ts && npm run tslint",
-    "start": "npm run serve-tcp",
+    "start": "npm run build && npm run serve-tcp",
     "start-api": "npm run serve-api",
     "start-tcp": "npm run serve-tcp",
     "serve-api": "node dist/api/server.js",
