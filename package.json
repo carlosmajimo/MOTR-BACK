@@ -11,9 +11,10 @@
   "scripts": {
     "build": "npm run build-ts && npm run tslint",
     "start": "npm run serve",
+    "serve": "node dist/index.js",
+    "postinstall": "npm run build",
     "start-api": "npm run serve-api",
     "start-tcp": "npm run serve-tcp",
-    "serve": "node dist/index.js",
     "serve-api": "node dist/api/server.js",
     "serve-tcp": "node dist/tcp-ip/server.js",
     "build-ts": "tsc",

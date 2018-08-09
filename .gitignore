@@ -14,7 +14,7 @@ results
 tmp
 
 # Editors
-.idea
+.idea/*
 
 # API keys and secrets
 .env
