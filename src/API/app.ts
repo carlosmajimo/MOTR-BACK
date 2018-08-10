@@ -3,7 +3,6 @@ import compression from "compression";  // compresses requests
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import expressValidator from "express-validator";
-import flash from "express-flash";
 import lusca from "lusca";
 import path from "path";
 import { ENVIRONMENT } from "./Utils/secrets";
@@ -19,8 +18,9 @@ const environment = ENVIRONMENT;
 const app = express();
 
 // Express configuration
+app.set("env", (environment === undefined ? "development" : "production"));
 app.set("port", process.env.PORT || 3000);
-app.set("views", path.join(__dirname, "../views"));
+app.set("Views", path.join(__dirname, "/Views"));
 app.set("view engine", "pug");
 app.use(compression());
 app.use(bodyParser.json());
