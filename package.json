@@ -12,6 +12,8 @@
     "build": "npm run build-sass && npm run build-ts && npm run tslint && npm run copy-static-assets",
     "start": "npm run serve",
     "serve": "node dist/index.js",
+    "dev": "npm run serve-dev",
+    "serve-dev": "nodemon dist/index.js",
     "postinstall": "npm run build",
     "start-api": "npm run serve-api",
     "start-tcp": "npm run serve-tcp",
