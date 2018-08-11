@@ -5,7 +5,7 @@ export class MotrContext {
 	private connection: Promise<Connection>;
 
 	constructor() {
-		this.connection = createConnection();
+		this.CreateConnection();
 	}
 
 	static getInstance() {
@@ -13,6 +13,10 @@ export class MotrContext {
 			MotrContext.instance = new MotrContext();
 		}
 		return MotrContext.instance;
+	}
+
+	private CreateConnection() {
+		this.connection = createConnection();
 	}
 
 	getConnection(): Promise<Connection> {
