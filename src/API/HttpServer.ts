@@ -54,7 +54,7 @@ export class HttpServer {
 
 		// Add initial express configuration
 		this.app.set("env", (environment === undefined ? "development" : "production"));
-		this.app.set("Views", path.join(__dirname, "/Views"));
+		this.app.set("Views", path.join(__dirname, "/views"));
 		this.app.set("view engine", "pug");
 		this.app.use(compression());
 		this.app.use(bodyParser.json());
