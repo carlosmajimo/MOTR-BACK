@@ -22,6 +22,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@types/socket.io": "^1.4.36",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "dotenv": "^4.0.0",
@@ -34,6 +35,7 @@
     "mysql2": "^1.5.3",
     "pug": "^2.0.0-rc.4",
     "reflect-metadata": "^0.1.12",
+    "socket.io": "^2.1.1",
     "typeorm": "^0.2.7",
     "winston": "^2.4.0"
   },

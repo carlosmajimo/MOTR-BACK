@@ -1,11 +1,13 @@
-import api from "./API/server";
-import tcp from "./TCP-IP/server";
+import * as dotenv from "dotenv";
+import { HttpServer } from "./API/HttpServer";
+import { TcpIpServer } from "./TCP-IP/TcpIpServer";
 import { MotrContext } from "./Infraestructure/MotrContext";
-import { PersonService } from "./Application/PersonService";
-import { Person	} from "./Domain/Person";
 
-const HTTPServer = api;
-const TCPServer = tcp;
+// Load environment variables from .env file, where API keys and passwords are configured
+dotenv.config({ path: ".env" });
+
+const app = HttpServer.getInstance();
+const TCPServer = TcpIpServer.getInstance();
 const Context = MotrContext.getInstance();
 
 /*const person = new Person();
