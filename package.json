@@ -15,10 +15,6 @@
     "dev": "npm run serve-dev",
     "serve-dev": "nodemon dist/index.js",
     "postinstall": "npm run build",
-    "start-api": "npm run serve-api",
-    "start-tcp": "npm run serve-tcp",
-    "serve-api": "node dist/api/server.js",
-    "serve-tcp": "node dist/tcp-ip/server.js",
     "build-ts": "tsc",
     "build-sass": "node-sass src/Public/css/main.scss dist/Public/css/main.css",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
@@ -28,8 +24,6 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
-    "db-migrate": "^0.11.1",
-    "db-migrate-mysql": "^1.1.10",
     "dotenv": "^4.0.0",
     "errorhandler": "^1.5.0",
     "express": "^4.16.3",
@@ -40,8 +34,7 @@
     "mysql2": "^1.5.3",
     "pug": "^2.0.0-rc.4",
     "reflect-metadata": "^0.1.12",
-    "sequelize": "^4.38.0",
-    "sequelize-typescript": "^0.6.6",
+    "typeorm": "^0.2.7",
     "winston": "^2.4.0"
   },
   "devDependencies": {
