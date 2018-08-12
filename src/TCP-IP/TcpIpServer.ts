@@ -1,4 +1,5 @@
 import { createServer, Server, Socket } from "net";
+import { GpsController } from "./Controllers/GpsController";
 
 export class TcpIpServer {
 	private static instance: TcpIpServer;
@@ -9,7 +10,7 @@ export class TcpIpServer {
 
 	constructor() {
 
-		// Create server Application
+		// Create App Socket
 		this.createApp();
 
 		// Configure TCP-IP Server
@@ -32,23 +33,17 @@ export class TcpIpServer {
 	private createApp(): void {
 		this.app = (c) => {
 			// 'connection' listener
-			console.log("client connected");
-			// console.log(c.eventNames());
+			console.log("GPS Conectado");
 
-			c.on("data", (data) => {
-				console.log(data.toString());
-			});
-
-			c.on("end", () => {
-				console.log("client disconnected");
-			});
+			// Socket Events
+			c.on("data", GpsController.data);
+			c.on("end", GpsController.disconnect);
 
 			c.pipe(c);
 		};
 	}
 
 	private config(): void {
-
 		// Set the port server
 		this.port = process.env.PORT || TcpIpServer.PORT;
 	}
