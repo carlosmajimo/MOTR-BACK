@@ -1,5 +1,6 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, OneToOne } from "typeorm";
 import { EntityBase } from "./Abstract/EntityBase";
+import { User } from "./User";
 import { Name } from "./ValueObjects/Name";
 import { ContactInfo } from "./ValueObjects/ContactInfo";
 
@@ -15,4 +16,6 @@ export class Person extends EntityBase {
 	@Column(type => ContactInfo)
 	contactInfo: ContactInfo;
 
+	@OneToOne( type => User, user => user.person)
+	user: User;
 }
