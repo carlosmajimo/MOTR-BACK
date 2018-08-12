@@ -1,10 +1,11 @@
-import { createServer, Server } from "http";
 import express from "express";
+import socketIo from "socket.io";
 import compression from "compression";
 import bodyParser from "body-parser";
 import expressValidator from "express-validator";
 import lusca from "lusca";
 import path from "path";
+import { createServer, Server } from "http";
 import { ENVIRONMENT } from "./Utils/Secrets";
 
 // Import Routers (route handlers)
@@ -16,6 +17,7 @@ export class HttpServer {
 	public static readonly PORT: number = 3000;
 	private app: express.Application;
 	private server: Server;
+	private socket: socketIo.Server;
 	private port: string | number;
 
 	constructor() {
@@ -31,6 +33,12 @@ export class HttpServer {
 
 		// Create Http Server using the express application
 		this.createServer();
+
+		// Initialize Socket.io
+		this.sockets();
+
+		// Configure Sockets
+		this.configureSocket();
 
 		// Listen the Http Server
 		this.listen();
@@ -71,6 +79,12 @@ export class HttpServer {
 	private createServer(): void {
 		this.server = createServer(this.app);
 	}
+
+	private sockets(): void {
+		this.socket = socketIo(this.server);
+	}
+
+	private configureSocket(): void {}
 
 	private listen(): void {
 		this.server.listen(this.port, () => {
