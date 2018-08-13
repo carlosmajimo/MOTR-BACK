@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToMany, JoinColumn } from "typeorm";
+import { Entity, Column, ManyToMany, JoinTable } from "typeorm";
 import { EntityBase } from "./Abstract/EntityBase";
 import { Permission } from "./Permission";
 
@@ -12,6 +12,6 @@ export class Role extends EntityBase {
 	description: string;
 
 	@ManyToMany(type => Permission, permissions => permissions.roles)
-	@JoinColumn()
+	@JoinTable()
 	permissions: Permission[];
 }

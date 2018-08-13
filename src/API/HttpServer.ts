@@ -6,7 +6,6 @@ import expressValidator from "express-validator";
 import lusca from "lusca";
 import path from "path";
 import { createServer, Server } from "http";
-import { ENVIRONMENT } from "./Utils/Secrets";
 
 // Import Routers (route handlers)
 import index from "./Routes/Views.routes";
@@ -26,7 +25,7 @@ export class HttpServer {
 		this.createApp();
 
 		// Configure Http Server
-		this.config(ENVIRONMENT);
+		this.config();
 
 		// Configure express Routes
 		this.configRoutes();
@@ -55,13 +54,13 @@ export class HttpServer {
 		this.app = express();
 	}
 
-	private config(environment: any): void {
+	private config(): void {
 
 		// Set the port server
 		this.port = process.env.PORT || HttpServer.PORT;
 
 		// Add initial express configuration
-		this.app.set("env", (environment === undefined ? "development" : "production"));
+		this.app.set("env", (process.env.NODE_ENV === undefined ? "development" : "production"));
 		this.app.set("Views", path.join(__dirname, "/views"));
 		this.app.set("view engine", "pug");
 		this.app.use(compression());
