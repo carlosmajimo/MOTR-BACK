@@ -3,10 +3,14 @@ import { GpsController } from "./Controllers/GpsController";
 
 export class TcpIpServer {
 	private static instance: TcpIpServer;
-	public static readonly PORT: number = 8338;
+	public static readonly PORT: number = 8005;
 	private app: (socket: Socket) => void;
 	private server: Server;
-	private port: string | number;
+	private options: {
+		port: string | number,
+		host: string,
+		exclusive: boolean,
+	};
 
 	constructor() {
 
@@ -44,8 +48,14 @@ export class TcpIpServer {
 	}
 
 	private config(): void {
-		// Set the port server
-		this.port = process.env.PORT || TcpIpServer.PORT;
+
+		const options = {
+			port: process.env.PORT || TcpIpServer.PORT,
+			host: process.env.HOST || "localhost",
+			exclusive: true
+		};
+		// Set Options server
+		this.options = options;
 	}
 
 	private createServer(): void {
@@ -53,10 +63,12 @@ export class TcpIpServer {
 	}
 
 	private listen(): void {
-		this.server.listen(this.port, () => {
+
+		this.server.listen(this.options, () => {
 			console.log(
-				"   TCP-IP Server is running at http://localhost:%d",
-				this.port
+				"   TCP-IP Server is running at http://%s:%d",
+				this.options.host,
+				this.options.port
 			);
 			console.log("   Press CTRL-C to stop\n");
 		});

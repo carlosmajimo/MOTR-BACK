@@ -9,6 +9,7 @@ import { createServer, Server } from "http";
 
 // Import Routers (route handlers)
 import index from "./Routes/Views.routes";
+import auth from "./Routes/Authentication.routes";
 
 export class HttpServer {
 
@@ -17,7 +18,11 @@ export class HttpServer {
 	private app: express.Application;
 	private server: Server;
 	private socket: socketIo.Server;
-	private port: string | number;
+	private options: {
+		port: string | number,
+		host: string,
+		exclusive: boolean,
+	};
 
 	constructor() {
 
@@ -56,8 +61,13 @@ export class HttpServer {
 
 	private config(): void {
 
-		// Set the port server
-		this.port = process.env.PORT || HttpServer.PORT;
+		const options = {
+			port: process.env.PORT || HttpServer.PORT,
+			host: process.env.HOST || "localhost",
+			exclusive: true
+		};
+		// Set Options server
+		this.options = options;
 
 		// Add initial express configuration
 		this.app.set("env", (process.env.NODE_ENV === undefined ? "development" : "production"));
@@ -73,6 +83,7 @@ export class HttpServer {
 
 	private configRoutes(): void {
 		this.app.use("/", index);
+		this.app.use("/api/v1", auth);
 	}
 
 	private createServer(): void {
@@ -86,10 +97,11 @@ export class HttpServer {
 	private configureSocket(): void {}
 
 	private listen(): void {
-		this.server.listen(this.port, () => {
+		this.server.listen(this.options, () => {
 			console.log(
-				"   HttpServer is running at http://localhost:%d in %s mode",
-				this.port,
+				"   HttpServer is running at http://%s:%d in %s mode",
+				this.options.host,
+				this.options.port,
 				this.app.get("env")
 			);
 			console.log("   Press CTRL-C to stop\n");
