@@ -3,10 +3,10 @@ import { Request, Response } from "express";
 
 export class AuthController {
 
-	static logIn = (req: Request, res: Response) => {
-		console.log("Soy el test");
+	static SignIn = (req: Request, res: Response) => {
+		console.log("Me logueo");
 
-		const token = JwtService.GenerateToken("holaa", "1h")
+		const token = JwtService.GenerateToken("holaa", "1h");
 		return res.status(200).send(token);
 	}
 }

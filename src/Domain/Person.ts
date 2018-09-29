@@ -18,4 +18,17 @@ export class Person extends EntityBase {
 
 	@OneToOne( type => User, user => user.person)
 	user: User;
+
+	public parseRequest(request: any): void {
+		this.identification = request.identification;
+		this.name = {
+			first: request.firstName,
+			last: request.lastName
+		};
+		this.contactInfo = {
+			email: request.email,
+			address: request.address,
+			phone: request.phone
+		};
+	}
 }

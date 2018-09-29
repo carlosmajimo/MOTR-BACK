@@ -10,6 +10,7 @@ import { createServer, Server } from "http";
 // Import Routers (route handlers)
 import index from "./Routes/Views.routes";
 import auth from "./Routes/Authentication.routes";
+import user from "./Routes/User.routes";
 
 export class HttpServer {
 
@@ -82,8 +83,12 @@ export class HttpServer {
 	}
 
 	private configRoutes(): void {
+
+		const apiV1 = "/api/v1";
+
 		this.app.use("/", index);
-		this.app.use("/api/v1", auth);
+		this.app.use(apiV1, auth);
+		this.app.use(apiV1 + "/user", user);
 	}
 
 	private createServer(): void {

@@ -13,5 +13,4 @@ export abstract class EntityBase {
 
 	@Column({ name: "active", default: true })
 	isActive: boolean;
-
 }
